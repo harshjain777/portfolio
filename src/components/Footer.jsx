@@ -3,7 +3,6 @@ import { BsTwitterX } from "react-icons/bs";
 import { SlSocialInstagram } from "react-icons/sl";
 import { BiLogoGmail } from "react-icons/bi";
 import { FaLinkedinIn } from "react-icons/fa6";
-import harshlogo from '../assets/harshlogo.png';
 import { motion } from 'framer-motion';
 
 function Footer() {
