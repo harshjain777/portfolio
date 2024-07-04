@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*::selection {
+    background-color: #FBBF24;
+    color: #000
+     /* Set your desired color here */
+  }
