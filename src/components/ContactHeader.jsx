@@ -1,7 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from 'emailjs-com';
 
-function ContactHeader({ toggle, handleToggle }) {
+function ContactHeader({ toggle }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        'YOUR_SERVICE_ID', // Replace with your actual service ID
+        'YOUR_TEMPLATE_ID', // Replace with your actual template ID
+        formData,
+        'YOUR_USER_ID' // Replace with your actual user ID
+      )
+      .then(
+        (result) => {
+          alert('Message sent successfully!');
+          setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+          });
+        },
+        (error) => {
+          alert('Failed to send message. Please try again later.');
+        }
+      );
+  };
+
   return (
     <motion.div
       className="flex flex-col items-center justify-center py-20 w-full"
@@ -14,10 +56,7 @@ function ContactHeader({ toggle, handleToggle }) {
         className={`w-full max-w-lg p-8 shadow-lg rounded-lg ${
           toggle ? 'shadow-yellow-500' : 'shadow-zinc-500'
         }`}
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleToggle();
-        }}
+        onSubmit={handleSubmit}
       >
         <div className="mb-4">
           <label className="block text-sm font-bold mb-2" htmlFor="name">
@@ -27,8 +66,11 @@ function ContactHeader({ toggle, handleToggle }) {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
             id="name"
             type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             placeholder="Your Name"
-            aria-label="Name"
+            required
           />
         </div>
         <div className="mb-4">
@@ -36,11 +78,14 @@ function ContactHeader({ toggle, handleToggle }) {
             Email
           </label>
           <input
-            className="shadow text-black appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
             id="email"
             type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             placeholder="Your Email"
-            aria-label="Email"
+            required
           />
         </div>
         <div className="mb-4">
@@ -48,11 +93,14 @@ function ContactHeader({ toggle, handleToggle }) {
             Subject
           </label>
           <input
-            className="shadow appearance-none text-black border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
             id="subject"
             type="text"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
             placeholder="Subject"
-            aria-label="Subject"
+            required
           />
         </div>
         <div className="mb-4">
@@ -60,11 +108,14 @@ function ContactHeader({ toggle, handleToggle }) {
             Message
           </label>
           <textarea
-            className="shadow appearance-none text-black border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
             id="message"
+            name="message"
             rows="5"
+            value={formData.message}
+            onChange={handleChange}
             placeholder="Your Message"
-            aria-label="Message"
+            required
           ></textarea>
         </div>
         <div className="flex items-center justify-between">
@@ -79,38 +130,9 @@ function ContactHeader({ toggle, handleToggle }) {
       <div className="mt-10">
         <p className="text-sm">
           Or contact me directly at:
-          <a href="mailto:jainharsh9555@gmail.com" className="text-blue-500">
+          <a href="mailto:harshduggar7@gmail.com" className="text-blue-500">
             {' '}
-            jainharsh9555@gmail.com
-          </a>
-        </p>
-        <p className="text-sm mt-2">
-          Follow me on:
-          <a
-            href="https://www.linkedin.com/in/harshjain-767192271"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 ml-2"
-          >
-            LinkedIn
-          </a>
-          ,
-          <a
-            href="https://github.com/Nanashi752"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 ml-2"
-          >
-            GitHub
-          </a>
-          ,
-          <a
-            href="https://twitter.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 ml-2"
-          >
-            Twitter
+            harshduggar7@gmail.com
           </a>
         </p>
       </div>
