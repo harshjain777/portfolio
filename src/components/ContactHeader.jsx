@@ -14,6 +14,10 @@ function ContactHeader({ toggle, handleToggle }) {
         className={`w-full max-w-lg p-8 shadow-lg rounded-lg ${
           toggle ? 'shadow-yellow-500' : 'shadow-zinc-500'
         }`}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleToggle();
+        }}
       >
         <div className="mb-4">
           <label className="block text-sm font-bold mb-2" htmlFor="name">
@@ -24,6 +28,7 @@ function ContactHeader({ toggle, handleToggle }) {
             id="name"
             type="text"
             placeholder="Your Name"
+            aria-label="Name"
           />
         </div>
         <div className="mb-4">
@@ -35,6 +40,7 @@ function ContactHeader({ toggle, handleToggle }) {
             id="email"
             type="email"
             placeholder="Your Email"
+            aria-label="Email"
           />
         </div>
         <div className="mb-4">
@@ -46,6 +52,7 @@ function ContactHeader({ toggle, handleToggle }) {
             id="subject"
             type="text"
             placeholder="Subject"
+            aria-label="Subject"
           />
         </div>
         <div className="mb-4">
@@ -57,13 +64,13 @@ function ContactHeader({ toggle, handleToggle }) {
             id="message"
             rows="5"
             placeholder="Your Message"
+            aria-label="Message"
           ></textarea>
         </div>
         <div className="flex items-center justify-between">
           <button
             className="bg-yellow-500 hover:bg-yellow-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={handleToggle}
+            type="submit"
           >
             Send
           </button>
@@ -72,15 +79,15 @@ function ContactHeader({ toggle, handleToggle }) {
       <div className="mt-10">
         <p className="text-sm">
           Or contact me directly at:
-          <a href="mailto:harshduggar7@gmail.com" className="text-blue-500">
+          <a href="mailto:jainharsh9555@gmail.com" className="text-blue-500">
             {' '}
-            harshduggar7@gmail.com
+            jainharsh9555@gmail.com
           </a>
         </p>
         <p className="text-sm mt-2">
           Follow me on:
           <a
-            href="https://www.linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/harshjain-767192271"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 ml-2"
@@ -89,7 +96,7 @@ function ContactHeader({ toggle, handleToggle }) {
           </a>
           ,
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/Nanashi752"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 ml-2"
